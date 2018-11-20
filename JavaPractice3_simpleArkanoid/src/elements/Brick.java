@@ -23,11 +23,11 @@ public class Brick {
 	}
 
 	
-	public void paint(Graphics2D g) {
-		// g.setPaint(color);
-		
-		g.fillRect(x, y, width, height);
-
+	public void paint(Graphics2D g, Color color) {
+		g.setColor(color.black);
+		g.drawRect(x, y, width, height);
+		g.setColor(color);
+		g.fillRect(x+1, y+1, width-1, height-1);
 	}
 	
 

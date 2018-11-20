@@ -12,14 +12,8 @@ public class greenBrick extends Brick {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void paint(Graphics2D g) {
-/*		g.setPaint(Color.green);
-		super.paint(g);*/
-		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
-		g.setColor(Color.green);
-		g.fillRect(x, y, width-1, height-1);
+	public void paint(Graphics2D g, Color color) {
+		super.paint(g, color.green);
 	}
 	
 	@Override

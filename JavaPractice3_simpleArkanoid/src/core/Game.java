@@ -1,5 +1,6 @@
 package core;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import elements.Ball;
@@ -22,12 +24,14 @@ import elements.redBrick;
 public class Game extends JPanel {
 
 	Ball ball = new Ball(this);
-	Racquet racquet = new Racquet(this);
+	public Racquet racquet = new Racquet(this);
 	Brick brick;
+	Color color;
 	private ArrayList<Brick> brickPack = new ArrayList<Brick>();
 
 
 	public Game() {
+		
 		fillBrickList();
 		addKeyListener(new KeyListener() {
 			@Override
@@ -44,36 +48,37 @@ public class Game extends JPanel {
 				racquet.keyPressed(e);
 			}
 		});
-		 setFocusable(true); // PARA QUE SIRVE ???
+		setFocusable(true);
 	}
 	
-	private void fillBrickList() {
-		
-		Random random = new Random();
-		
-		int x = 3, y = 3;
-		
-		
-		for(int i = 0; i < 20; i++) {
+	
+    private void fillBrickList() {
+        
+        Random random = new Random();
+        
+        int x = 3, y = 3;
+        
+        
+        for(int i = 0; i < 20; i++) {
 
-			int typeOfBrick = random.nextInt(3) + 1;
-			
-			switch(typeOfBrick) {
-			
-				case 1: brickPack.add(new greenBrick(this, x, y)); 
-					break;
-				case 2: brickPack.add(new blueBrick(this, x, y));
-					break;
-				case 3: brickPack.add(new redBrick(this, x, y));
-					break;
-			}
-			x = x + 20; // brick.getWidth()
-			if(x==28) {
-				y = y + brick.getHeight();
-				x = 3;
-			}	
-		}
-	}
+            int typeOfBrick = random.nextInt(3) + 1;
+            
+            switch(typeOfBrick) {
+            
+                case 1: brickPack.add(new greenBrick(this, x, y)); 
+                    break;
+                case 2: brickPack.add(new blueBrick(this, x, y));
+                    break;
+                case 3: brickPack.add(new redBrick(this, x, y));
+                    break;
+            }
+            x = x + 20; // brick.getWidth()
+            if(x==28) {
+                y = y + brick.getHeight();
+                x = 3;
+            }   
+        }
+    }
 	
 	private void move() {
 		ball.move();
@@ -88,9 +93,14 @@ public class Game extends JPanel {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		ball.paint(g2d);
 		racquet.paint(g2d);
-		for(Brick brick : brickPack) {
-			brick.paint(g2d);
-		}
+        for(Brick brick : brickPack) {
+        	brick.paint(g2d, color);
+        }
+	}
+	
+	public void gameOver() {
+		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
+		System.exit(ABORT);
 	}
 
 	public static void main(String[] args) throws InterruptedException {

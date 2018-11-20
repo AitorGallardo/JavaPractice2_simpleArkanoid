@@ -14,14 +14,8 @@ public class blueBrick extends Brick{
 	}
 
 	@Override
-	public void paint(Graphics2D g) {
-/*		g.setPaint(Color.blue);
-		super.paint(g);*/
-		
-		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
-		g.setColor(Color.blue);
-		g.fillRect(x-1, y-1, width, height);
+	public void paint(Graphics2D g, Color color) {
+		super.paint(g, color.blue);
 	}
 	
 	@Override

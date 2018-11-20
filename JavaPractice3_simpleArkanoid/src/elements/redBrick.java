@@ -12,15 +12,9 @@ public class redBrick extends Brick{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void paint(Graphics2D g) {
-/*		g.setPaint(Color.red);
-		super.paint(g);*/
-		
-		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
-		g.setColor(Color.red);
-		g.fillRect(x-1, y-1, width, height);
+
+	public void paint(Graphics2D g, Color color) {
+		super.paint(g, color.red);
 	}
 	
 	@Override
