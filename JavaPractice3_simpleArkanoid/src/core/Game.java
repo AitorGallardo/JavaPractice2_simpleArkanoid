@@ -5,20 +5,30 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import elements.Ball;
+import elements.Brick;
 import elements.Racquet;
+import elements.blueBrick;
+import elements.greenBrick;
+import elements.redBrick;
 
 @SuppressWarnings("serial") // QUE ES ???
 public class Game extends JPanel {
 
 	Ball ball = new Ball(this);
 	Racquet racquet = new Racquet(this);
+	Brick brick;
+	private ArrayList<Brick> brickPack = new ArrayList<Brick>();
 
 
 	public Game() {
+		fillBrickList();
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -37,6 +47,34 @@ public class Game extends JPanel {
 		 setFocusable(true); // PARA QUE SIRVE ???
 	}
 	
+	private void fillBrickList() {
+		
+		Random random = new Random();
+		
+		int x = 3, y = 3;
+		
+		
+		for(int i = 0; i < 20; i++) {
+
+			int typeOfBrick = random.nextInt(3) + 1;
+			
+			switch(typeOfBrick) {
+			
+				case 1: brickPack.add(new greenBrick(this, x, y)); 
+					break;
+				case 2: brickPack.add(new blueBrick(this, x, y));
+					break;
+				case 3: brickPack.add(new redBrick(this, x, y));
+					break;
+			}
+			x = x + 20; // brick.getWidth()
+			if(x==28) {
+				y = y + brick.getHeight();
+				x = 3;
+			}	
+		}
+	}
+	
 	private void move() {
 		ball.move();
 		racquet.move();
@@ -50,6 +88,9 @@ public class Game extends JPanel {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		ball.paint(g2d);
 		racquet.paint(g2d);
+		for(Brick brick : brickPack) {
+			brick.paint(g2d);
+		}
 	}
 
 	public static void main(String[] args) throws InterruptedException {
