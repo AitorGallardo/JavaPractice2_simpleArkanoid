@@ -11,8 +11,8 @@ public class Brick {
 	protected int x = 0;
 	protected int y = 0;
 	protected int lifes = 0;
-	protected int width = 20;
-	protected int height = 10;
+	private static final int WIDTH = 20;
+	private static final int HEIGHT = 10;
 	protected Game game;
 
 	public Brick(Game game, int x, int y) {
@@ -25,9 +25,9 @@ public class Brick {
 	
 	public void paint(Graphics2D g, Color color) {
 		g.setColor(color.black);
-		g.drawRect(x, y, width, height);
+		g.drawRect(x, y, WIDTH, HEIGHT);
 		g.setColor(color);
-		g.fillRect(x+1, y+1, width-1, height-1);
+		g.fillRect(x+1, y+1, WIDTH-1, HEIGHT-1);
 	}
 	
 
@@ -65,13 +65,15 @@ public class Brick {
 
 
 	public int getWidth() {
-		return width;
+		return WIDTH;
 	}
 
 
 	public int getHeight() {
-		return height;
+		return HEIGHT;
 	}
+	
+	
 	
 	
 	

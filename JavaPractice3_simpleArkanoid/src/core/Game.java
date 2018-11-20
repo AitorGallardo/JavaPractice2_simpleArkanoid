@@ -56,10 +56,11 @@ public class Game extends JPanel {
         
         Random random = new Random();
         
-        int x = 3, y = 3;
+        int x = 40, // fullwidth: 300; margin: 50 => x = margin - brickWidth/2    //REMEMBER it start prints from the middle of the object
+        	y = 50;
         
         
-        for(int i = 0; i < 20; i++) {
+        for(int i = 0; i < 30; i++) { // 10 bricks * 3 rows
 
             int typeOfBrick = random.nextInt(3) + 1;
             
@@ -73,9 +74,10 @@ public class Game extends JPanel {
                     break;
             }
             x = x + 20; // brick.getWidth()
-            if(x==28) {
-                y = y + brick.getHeight();
-                x = 3;
+            if(x==240) {
+                y = y + 10;
+                x = 40;
+                
             }   
         }
     }
@@ -86,7 +88,7 @@ public class Game extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics g) { // it prints from the middle of the object width/2 height/2
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,

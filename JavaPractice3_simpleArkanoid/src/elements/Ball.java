@@ -25,7 +25,8 @@ public class Ball {
 		if (y + ya < 0)
 			ya = 1;
 		if (y + ya > game.getHeight() - DIAMETER)
-			game.gameOver();
+			ya = -1; //
+			// game.gameOver();
 		if (collision()){
 			ya = -1;
 			y = game.racquet.getTopY() - DIAMETER;
