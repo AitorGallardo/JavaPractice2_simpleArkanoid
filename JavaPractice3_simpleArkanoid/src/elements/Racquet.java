@@ -8,7 +8,7 @@ import core.Game;
 
 public class Racquet {
 	private static final int Y = 330;
-	private static final int WITH = 60;
+	private static final int WIDTH = 60;
 	private static final int HEIGHT = 10;
 	int x = 0;
 	int xa = 0;
@@ -19,12 +19,12 @@ public class Racquet {
 	}
 
 	public void move() {
-		if (x + xa > 0 && x + xa < game.getWidth() - WITH)
+		if (x + xa > 0 && x + xa < game.getWidth() - WIDTH)
 			x = x + xa;
 	}
 
 	public void paint(Graphics2D g) {
-		g.fillRect(x, Y, WITH, HEIGHT);
+		g.fillRect(x, Y, WIDTH, HEIGHT);
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -39,10 +39,19 @@ public class Racquet {
 	}
 
 	public Rectangle getBounds() {
-		return new Rectangle(x, Y, WITH, HEIGHT);
+		return new Rectangle(x, Y, WIDTH, HEIGHT);
 	}
 
-	public int getTopY() {
+	public int getTopSide() {
 		return Y - HEIGHT;
+	}
+	public int getBottomSide() {
+		return Y + HEIGHT;
+	}
+	public int getLeftSide() {
+		return x - WIDTH;
+	}
+	public int getRightSide() {
+		return x + WIDTH;
 	}
 }

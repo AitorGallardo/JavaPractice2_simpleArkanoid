@@ -23,11 +23,11 @@ import elements.redBrick;
 @SuppressWarnings("serial") // QUE ES ???
 public class Game extends JPanel {
 
-	Ball ball = new Ball(this);
+	public Ball ball = new Ball(this);
 	public Racquet racquet = new Racquet(this);
 	Brick brick;
 	Color color;
-	private ArrayList<Brick> brickPack = new ArrayList<Brick>();
+	public ArrayList<Brick> brickPack = new ArrayList<Brick>();
 
 
 	public Game() {
@@ -86,6 +86,12 @@ public class Game extends JPanel {
 		ball.move();
 		racquet.move();
 	}
+	
+	private void checkGameState() {
+		for(Brick eaBrick: brickPack) {
+			eaBrick.checkHit();
+		}
+	}
 
 	@Override
 	public void paint(Graphics g) { // it prints from the middle of the object width/2 height/2
@@ -116,6 +122,7 @@ public class Game extends JPanel {
 		while (true) {
 			game.move();
 			game.repaint();
+			game.checkGameState();
 			Thread.sleep(10);
 		}
 	}

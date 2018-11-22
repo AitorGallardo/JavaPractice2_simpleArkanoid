@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import core.Game;
 
 public class Ball {
-	private static final int DIAMETER = 30;
+	private static final int DIAMETER = 15; // 30
 	int x = 0;
 	int y = 0;
 	int xa = 1;
@@ -29,18 +29,20 @@ public class Ball {
 			// game.gameOver();
 		if (collision()){
 			ya = -1;
-			y = game.racquet.getTopY() - DIAMETER;
+			y = game.racquet.getTopSide() - DIAMETER/2;
 		}
 		x = x + xa;
 		y = y + ya;
 	}
 
 	private boolean collision() {
+		//game.brickPack.lastIndexOf(o)
 		return game.racquet.getBounds().intersects(getBounds());
 	}
 
 	public void paint(Graphics2D g) {
-		g.fillOval(x, y, DIAMETER, DIAMETER);
+		g.fillRect(x, y, DIAMETER, DIAMETER);
+		// g.fillOval(x, y, DIAMETER, DIAMETER);
 	}
 	
 	public Rectangle getBounds() {

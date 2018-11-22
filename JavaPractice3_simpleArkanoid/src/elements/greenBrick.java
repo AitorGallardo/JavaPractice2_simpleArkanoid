@@ -18,7 +18,7 @@ public class greenBrick extends Brick {
 	
 	@Override
 	public void checkHit() {
-
+		super.checkHit();
 	}
 
 	@Override

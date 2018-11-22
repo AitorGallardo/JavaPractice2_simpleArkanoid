@@ -32,13 +32,84 @@ public class Brick {
 	
 
 	public void checkHit() {
-
+		
+		if(collision()) {
+			this.changeBallDirection();
+			this.lifes--;
+		}
 	}
 
 
 	public void brickAction() {
 		
 	}
+	
+	private boolean collision() {
+	
+		 return (game.ball.getBounds().intersects(getBounds()));
+	}
+	
+	private void changeBallDirection() {
+		
+			 Rectangle ball = game.ball.getBounds();
+			 int ballT = getTopSide(ball.y, ball.height);
+			 int ballB = getBottomSide(ball.y, ball.height);
+			 int ballL = getLeftSide(ball.x, ball.width);
+			 int ballR = getRightSide(ball.x, ball.width);
+			 
+			 Rectangle thisBrick = this.getBounds();
+			 int brickT = getTopSide(thisBrick.y, thisBrick.height);
+			 int brickB = getBottomSide(thisBrick.y, thisBrick.height);
+			 int brickL = getLeftSide(thisBrick.x, thisBrick.width);
+			 int brickR = getRightSide(thisBrick.x, thisBrick.width);
+			 
+			 if(ballT==brickB) {
+				 game.ball.ya = 1;
+				 game.ball.y = y + game.ball.ya;
+			 } else if(ballB==brickT) {
+				 game.ball.ya = -1;
+				 game.ball.y = y + game.ball.ya;
+			 } else if(ballL == brickR) {
+				 game.ball.xa = 1;
+				 game.ball.x = x + game.ball.xa;
+			 } else if(ballR == brickL) {
+				 game.ball.xa = -1;
+				 game.ball.x = x + game.ball.xa;
+			 }
+	}
+
+
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, WIDTH, HEIGHT);
+	}
+	
+
+	public int getTopSide(int y,int HEIGHT) {
+		return y - HEIGHT;
+	}
+	public int getBottomSide(int y, int HEIGHT) {
+		return y + HEIGHT;
+	}
+	public int getLeftSide(int x, int WIDTH) {
+		return x - WIDTH;
+	}
+	public int getRightSide(int x, int WIDTH) {
+		return x + WIDTH;
+	}
+	
+	/*	public int getTopSide() {
+			return y - HEIGHT;
+		}
+		public int getBottomSide() {
+			return y + HEIGHT;
+		}
+		public int getLeftSide() {
+			return x - WIDTH;
+		}
+		public int getRightSide() {
+			return x + WIDTH;
+		}*/
 
 
 	

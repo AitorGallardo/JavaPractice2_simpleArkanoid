@@ -20,7 +20,7 @@ public class blueBrick extends Brick{
 	
 	@Override
 	public void checkHit() {
-
+		super.checkHit();
 	}
 
 	@Override
