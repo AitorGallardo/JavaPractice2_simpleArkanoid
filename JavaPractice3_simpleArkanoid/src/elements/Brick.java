@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
+
 import core.Game;
 
 public class Brick {
@@ -34,22 +36,21 @@ public class Brick {
 	public void checkHit() {
 		
 		if(collision()) {
+			//JOptionPane.showMessageDialog(null, this);
 			this.changeBallDirection();
-			this.lifes--;
+			// this.lifes--;
 		}
 	}
-
-
+		
 	public void brickAction() {
 		
 	}
 	
-	private boolean collision() {
-	
-		 return (game.ball.getBounds().intersects(getBounds()));
+	public boolean collision() {
+		  return (game.ball.getBounds().intersects(getBounds()));
 	}
-	
-	private void changeBallDirection() {
+
+	public void changeBallDirection() {
 		
 			 Rectangle ball = game.ball.getBounds();
 			 int ballT = getTopSide(ball.y, ball.height);
@@ -63,19 +64,27 @@ public class Brick {
 			 int brickL = getLeftSide(thisBrick.x, thisBrick.width);
 			 int brickR = getRightSide(thisBrick.x, thisBrick.width);
 			 
-			 if(ballT==brickB) {
-				 game.ball.ya = 1;
-				 game.ball.y = y + game.ball.ya;
-			 } else if(ballB==brickT) {
-				 game.ball.ya = -1;
-				 game.ball.y = y + game.ball.ya;
-			 } else if(ballL == brickR) {
+			 String touchingTopBrickandBottomBall = "TOP_BRICK - BOTTOM_BALL: " + (brickT-ballB);
+			 String touchingBottomBrickandTopBall = "BOTTOM_BRICK - TOP_BALL: " + (brickB-ballT);
+			 String touchingLeftBallandRightBrick = "LEFT_BALL - RIGHT_BRICK: " + (ballL-brickR);
+			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (ballR-brickL);
+
+	
+			// Intersection range is about 2 or 3 
+			 if(ballL-brickR < 5 && ballL-brickR > 0) { 
+				 JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
 				 game.ball.xa = 1;
-				 game.ball.x = x + game.ball.xa;
-			 } else if(ballR == brickL) {
+			 } else if(ballR-brickL < 5 && ballR-brickL > 0) {
+				 JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);
 				 game.ball.xa = -1;
-				 game.ball.x = x + game.ball.xa;
 			 }
+			  if(brickB-ballT < 5 && brickB-ballT > 0) {
+				 JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
+				 game.ball.ya = 1;
+			 } else if(brickT-ballB < 5 && brickT-ballB > 0) {
+				 JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
+				 game.ball.ya = -1;
+			 } 
 	}
 
 
@@ -84,18 +93,17 @@ public class Brick {
 		return new Rectangle(x, y, WIDTH, HEIGHT);
 	}
 	
-
 	public int getTopSide(int y,int HEIGHT) {
-		return y - HEIGHT;
+		return y - HEIGHT/2;
 	}
 	public int getBottomSide(int y, int HEIGHT) {
-		return y + HEIGHT;
+		return y + HEIGHT/2;
 	}
 	public int getLeftSide(int x, int WIDTH) {
-		return x - WIDTH;
+		return x - WIDTH/2;
 	}
 	public int getRightSide(int x, int WIDTH) {
-		return x + WIDTH;
+		return x + WIDTH/2;
 	}
 	
 	/*	public int getTopSide() {

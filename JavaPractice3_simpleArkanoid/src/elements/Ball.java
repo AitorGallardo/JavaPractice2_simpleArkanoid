@@ -41,8 +41,8 @@ public class Ball {
 	}
 
 	public void paint(Graphics2D g) {
-		g.fillRect(x, y, DIAMETER, DIAMETER);
-		// g.fillOval(x, y, DIAMETER, DIAMETER);
+		//g.fillRect(x, y, DIAMETER, DIAMETER);  We can use a rectangle to have a clearer view of intersactions
+		g.fillOval(x, y, DIAMETER, DIAMETER);
 	}
 	
 	public Rectangle getBounds() {
