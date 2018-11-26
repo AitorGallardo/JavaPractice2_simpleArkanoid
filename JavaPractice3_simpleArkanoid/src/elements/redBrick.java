@@ -20,8 +20,8 @@ public class redBrick extends Brick{
 	}
 	
 	@Override
-	public void checkHit() {
-		super.checkHit();
+	public boolean checkHit() {
+		return super.checkHit();
 	}
 
 	@Override

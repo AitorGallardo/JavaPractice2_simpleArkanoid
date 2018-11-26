@@ -17,8 +17,8 @@ public class greenBrick extends Brick {
 		super.paint(g, color.green);
 	}
 	@Override
-	public void checkHit() {
-		super.checkHit();
+	public boolean checkHit() {
+		return super.checkHit();
 	}
 
 	@Override

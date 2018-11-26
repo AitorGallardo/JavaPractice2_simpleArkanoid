@@ -88,8 +88,12 @@ public class Game extends JPanel {
 	}
 	
 	private void checkGameState() {
+		
+		
 		for(Brick eaBrick: brickPack) {
-			eaBrick.checkHit();
+			if(eaBrick.checkHit()) {
+				return;
+			}
 		}
 	}
 

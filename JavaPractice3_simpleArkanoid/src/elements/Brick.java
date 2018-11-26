@@ -33,13 +33,14 @@ public class Brick {
 	}
 	
 
-	public void checkHit() {
+	public boolean checkHit() {
 		
 		if(collision()) {
-			//JOptionPane.showMessageDialog(null, this);
 			this.changeBallDirection();
 			// this.lifes--;
+			return true;
 		}
+		return false;
 	}
 		
 	public void brickAction() {
@@ -64,27 +65,38 @@ public class Brick {
 			 int brickL = getLeftSide(thisBrick.x, thisBrick.width);
 			 int brickR = getRightSide(thisBrick.x, thisBrick.width);
 			 
+			 // Messages to check hitting						
 			 String touchingTopBrickandBottomBall = "TOP_BRICK - BOTTOM_BALL: " + (brickT-ballB);
-			 String touchingBottomBrickandTopBall = "BOTTOM_BRICK - TOP_BALL: " + (brickB-ballT);
+			 String touchingBottomBrickandTopBall = "BOTTOM_BRICK - TOP_BALL: " + (ballT-brickB);
 			 String touchingLeftBallandRightBrick = "LEFT_BALL - RIGHT_BRICK: " + (ballL-brickR);
-			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (ballR-brickL);
+			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (brickL-ballR);
 
-	
-			// Intersection range is about 2 or 3 
-			 if(ballL-brickR < 5 && ballL-brickR > 0) { 
-				 JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
-				 game.ball.xa = 1;
-			 } else if(ballR-brickL < 5 && ballR-brickL > 0) {
-				 JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);
-				 game.ball.xa = -1;
-			 }
-			  if(brickB-ballT < 5 && brickB-ballT > 0) {
-				 JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
+			 /*JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
+			 JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
+			 JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
+			 JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);*/
+			 
+			 
+			 
+			// HARCODED INTERSECTION RANGE
+			 if(ballT-brickB == -1) {
+				 // JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
 				 game.ball.ya = 1;
-			 } else if(brickT-ballB < 5 && brickT-ballB > 0) {
-				 JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
+				
+			 } else if(brickT-ballB == -1) {
+				 // JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
 				 game.ball.ya = -1;
-			 } 
+			
+			 } else if(ballL-brickR == 4) { 
+				 // JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
+				 game.ball.xa = 1;
+			
+			 } else if(brickL-ballR == -6) {
+				  // JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);
+				 game.ball.xa = -1;
+				 
+			 }
+ 
 	}
 
 
