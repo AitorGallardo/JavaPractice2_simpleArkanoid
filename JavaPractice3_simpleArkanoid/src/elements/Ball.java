@@ -26,7 +26,7 @@ public class Ball {
 			ya = 1;
 		if (y + ya > game.getHeight() - DIAMETER) {
 			ya = -1; //
-			game.gameOver();
+			//game.gameOver();
 		}
 		if (collision()){
 			ya = -1;

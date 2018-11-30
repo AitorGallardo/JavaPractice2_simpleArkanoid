@@ -12,6 +12,7 @@ public class redBrick extends Brick{
 
 	public redBrick(Game game, int x, int y) {
 		super(game, x, y);
+		super.lifes = 2;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,7 +27,8 @@ public class redBrick extends Brick{
 
 	@Override
 	public void brickAction() {
-		
+		y = y+1;
+		// hacer un getTop cuando llegue abajo de todo de la pantalla y finalize
 	}
 
 }

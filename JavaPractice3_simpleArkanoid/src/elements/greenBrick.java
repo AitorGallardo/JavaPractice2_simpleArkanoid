@@ -10,6 +10,7 @@ public class greenBrick extends Brick {
 
 	public greenBrick(Game game, int x, int y) {
 		super(game, x, y);
+		super.lifes = 3;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,7 +24,7 @@ public class greenBrick extends Brick {
 
 	@Override
 	public void brickAction() {
-		
+		y = y+1;
 	}
 
 }

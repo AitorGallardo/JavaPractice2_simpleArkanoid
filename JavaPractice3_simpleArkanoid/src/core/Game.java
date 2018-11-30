@@ -94,6 +94,9 @@ public class Game extends JPanel {
 			if(eaBrick.checkHit()) {
 				return;
 			}
+			if(eaBrick.getLifes() <= 0) {
+				eaBrick.brickAction();
+			}
 		}
 	}
 

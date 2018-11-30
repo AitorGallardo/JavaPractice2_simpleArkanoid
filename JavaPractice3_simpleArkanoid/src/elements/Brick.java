@@ -37,7 +37,7 @@ public class Brick {
 		
 		if(collision()) {
 			this.changeBallDirection();
-			// this.lifes--;
+			this.lifes--;
 			return true;
 		}
 		return false;
@@ -163,6 +163,13 @@ public class Brick {
 	public int getHeight() {
 		return HEIGHT;
 	}
+
+
+	public int getLifes() {
+		return lifes;
+	}
+	
+	
 	
 	
 	

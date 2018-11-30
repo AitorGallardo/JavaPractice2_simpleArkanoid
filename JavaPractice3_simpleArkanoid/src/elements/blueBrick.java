@@ -11,6 +11,7 @@ public class blueBrick extends Brick{
 	
 	public blueBrick(Game game, int x, int y) {
 		super(game, x, y);
+		super.lifes = 1;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -25,7 +26,12 @@ public class blueBrick extends Brick{
 
 	@Override
 	public void brickAction() {
-		
+		try {
+			super.finalize();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	
 }
