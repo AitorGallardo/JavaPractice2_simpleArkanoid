@@ -28,7 +28,6 @@ public class redBrick extends Brick{
 	@Override
 	public void brickAction() {
 		y = y+1;
-		// hacer un getTop cuando llegue abajo de todo de la pantalla y finalize
 	}
 
 }

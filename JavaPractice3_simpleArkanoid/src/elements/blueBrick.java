@@ -26,12 +26,7 @@ public class blueBrick extends Brick{
 
 	@Override
 	public void brickAction() {
-		try {
-			super.finalize();
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		y = y+1;
 	}
 	
 }
