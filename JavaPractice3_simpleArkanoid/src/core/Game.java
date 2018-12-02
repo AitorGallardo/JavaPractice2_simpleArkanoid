@@ -93,9 +93,7 @@ public class Game extends JPanel {
 		String type = "";
 		
 		for(Brick eaBrick: brickPack) {
-			if(eaBrick.checkHit()) {
-				return;
-			}
+			eaBrick.checkHit();
 			if(eaBrick.getLifes() <= 0) {
 				eaBrick.brickAction();
 				type = eaBrick.getType();

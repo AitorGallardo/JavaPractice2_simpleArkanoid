@@ -36,7 +36,7 @@ public class Brick {
 
 	public boolean checkHit() {
 		
-		if(collision()) {
+		if(collision() && lifes > 0) {
 			this.changeBallDirection();
 			this.lifes--;
 			return true;
