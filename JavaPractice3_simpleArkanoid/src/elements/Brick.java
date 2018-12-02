@@ -13,6 +13,7 @@ public class Brick {
 	protected int x = 0;
 	protected int y = 0;
 	protected int lifes = 0;
+	protected String type = "none";
 	private static final int WIDTH = 20;
 	private static final int HEIGHT = 10;
 	protected Game game;
@@ -168,6 +169,12 @@ public class Brick {
 	public int getLifes() {
 		return lifes;
 	}
+
+
+	public String getType() {
+		return type;
+	}
+	
 	
 	
 	

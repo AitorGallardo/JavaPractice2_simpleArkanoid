@@ -13,6 +13,7 @@ public class redBrick extends Brick{
 	public redBrick(Game game, int x, int y) {
 		super(game, x, y);
 		super.lifes = 2;
+		super.type = "red";
 		// TODO Auto-generated constructor stub
 	}
 

@@ -89,6 +89,8 @@ public class Game extends JPanel {
 	
 	private void checkGameState() {
 		
+		int position = -1 ;
+		String type = "";
 		
 		for(Brick eaBrick: brickPack) {
 			if(eaBrick.checkHit()) {
@@ -96,8 +98,13 @@ public class Game extends JPanel {
 			}
 			if(eaBrick.getLifes() <= 0) {
 				eaBrick.brickAction();
+				type = eaBrick.getType();
+				if(type != "red")
+				position = brickPack.indexOf(eaBrick);
 			}
 		}
+		if(position != -1)
+		brickPack.remove(position);
 	}
 
 	@Override

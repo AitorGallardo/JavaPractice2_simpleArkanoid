@@ -11,6 +11,7 @@ public class greenBrick extends Brick {
 	public greenBrick(Game game, int x, int y) {
 		super(game, x, y);
 		super.lifes = 3;
+		super.type = "green";
 		// TODO Auto-generated constructor stub
 	}
 
