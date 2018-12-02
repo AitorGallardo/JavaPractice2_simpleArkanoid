@@ -28,7 +28,7 @@ public class Game extends JPanel {
 	Brick brick;
 	Color color;
 	public ArrayList<Brick> brickPack = new ArrayList<Brick>();
-
+	public int raquetSpeedModifier = 0;
 
 	public Game() {
 		
@@ -45,7 +45,7 @@ public class Game extends JPanel {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				racquet.keyPressed(e);
+				racquet.keyPressed(e, raquetSpeedModifier);
 			}
 		});
 		setFocusable(true);
@@ -131,7 +131,7 @@ public class Game extends JPanel {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		while (true) {
+		while(true) {
 			game.move();
 			game.repaint();
 			game.checkGameState();

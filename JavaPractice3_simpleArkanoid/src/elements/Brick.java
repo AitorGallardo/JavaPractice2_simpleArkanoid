@@ -21,7 +21,6 @@ public class Brick {
 	public Brick(Game game, int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.lifes = lifes;
 		this.game= game;
 	}
 

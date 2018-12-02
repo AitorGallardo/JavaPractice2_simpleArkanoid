@@ -31,11 +31,14 @@ public class Racquet {
 		xa = 0;
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e, int modifier) {
+		
+		
+		
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
-			xa = -1;
+			xa = -1 - modifier;
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-			xa = 1;
+			xa = 1 + modifier;
 	}
 
 	public Rectangle getBounds() {
