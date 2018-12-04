@@ -17,6 +17,7 @@ public class Brick {
 	protected static final int WIDTH = 20;
 	protected static final int HEIGHT = 10;
 	protected boolean hasHitRacquetOnFall = false; // we use this just in red bricks
+
 	
 	protected Game game;
 
