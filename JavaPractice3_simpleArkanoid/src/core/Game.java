@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,11 +28,41 @@ public class Game extends JPanel {
 	public Ball ball = new Ball(this);
 	public Racquet racquet = new Racquet(this);
 	public ArrayList<Brick> brickPack = new ArrayList<Brick>();
-	// Brick brick;
 	Color color;
 	
 	public int raquetSpeedModifier = 0;
 	public int lifes = 3;
+	
+	
+	// Timer. We need to create it in the main class cause if we create it in brick class and we delete the brick we cant manage that specific tasker to reset or finish it
+	public Timer timer = new Timer();
+	
+	public boolean timerActive = false; // Handles wheter we have an active count. If we already have one we reset countdown
+	public int countDown; 
+	
+	public TimerTask setCountDownTask() {
+		countDown = 10;
+		
+		TimerTask task = new TimerTask() {	
+			
+			@Override
+			public void run() {
+				raquetSpeedModifier = 3;
+				countDown--;
+				timerActive = true;				
+				System.out.println(countDown);
+				if(countDown == 0) {
+					timerActive = false;
+					raquetSpeedModifier = 0;
+					this.cancel();
+				}
+			}
+		};
+		
+		return task;
+	}
+
+	
 
 	public Game() {
 		
@@ -83,12 +115,7 @@ public class Game extends JPanel {
             }   
         }
     }
-	
-	private void move() {
-		ball.move();
-		racquet.move();
-	}
-	
+    
 	private void checkGameState() {
 		
 		int position = -1 ;
@@ -110,7 +137,12 @@ public class Game extends JPanel {
 			this.gameOver();
 		}
 	}
-
+	
+	private void move() {
+		ball.move();
+		racquet.move();
+	}
+	
 	@Override
 	public void paint(Graphics g) { // it prints from the middle of the object width/2 height/2
 		super.paint(g);
