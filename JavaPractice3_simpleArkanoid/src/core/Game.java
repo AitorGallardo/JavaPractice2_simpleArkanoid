@@ -25,10 +25,12 @@ public class Game extends JPanel {
 
 	public Ball ball = new Ball(this);
 	public Racquet racquet = new Racquet(this);
-	Brick brick;
-	Color color;
 	public ArrayList<Brick> brickPack = new ArrayList<Brick>();
+	// Brick brick;
+	Color color;
+	
 	public int raquetSpeedModifier = 0;
+	public int lifes = 3;
 
 	public Game() {
 		
@@ -90,19 +92,23 @@ public class Game extends JPanel {
 	private void checkGameState() {
 		
 		int position = -1 ;
-		String type = "";
+
 		
+		//Check bricks states and do brick function
 		for(Brick eaBrick: brickPack) {
 			eaBrick.checkHit();
 			if(eaBrick.getLifes() <= 0) {
 				eaBrick.brickAction();
-				type = eaBrick.getType();
-				if(type != "red")
-				position = brickPack.indexOf(eaBrick);
+				if(eaBrick.getType() != "red" || eaBrick.isHasHitRacquetOnFall() == true)
+					position = brickPack.indexOf(eaBrick);
 			}
 		}
 		if(position != -1)
 		brickPack.remove(position);
+		
+		if(lifes==0) {
+			this.gameOver();
+		}
 	}
 
 	@Override

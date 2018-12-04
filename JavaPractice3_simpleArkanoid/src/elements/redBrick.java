@@ -8,8 +8,6 @@ import core.Game;
 
 public class redBrick extends Brick{
 
-
-
 	public redBrick(Game game, int x, int y) {
 		super(game, x, y);
 		super.lifes = 2;
@@ -29,6 +27,15 @@ public class redBrick extends Brick{
 	@Override
 	public void brickAction() {
 		y = y+1;
+		
+		boolean brickIntersectingRacquet = game.racquet.getBounds().intersects(this.getBounds());
+		
+		if(brickIntersectingRacquet && super.hasHitRacquetOnFall==false) {
+			super.hasHitRacquetOnFall = true;
+				game.lifes--;
+				game.ball.x = 0;
+				game.ball.y = 0;
+				System.out.println("VIDAS: " + game.lifes);
+		}		
 	}
-
 }

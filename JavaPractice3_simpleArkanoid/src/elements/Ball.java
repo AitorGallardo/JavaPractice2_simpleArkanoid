@@ -25,7 +25,10 @@ public class Ball {
 		if (y + ya < 0)
 			ya = 1;
 		if (y + ya > game.getHeight() - DIAMETER) {
-			ya = -1; //
+			// ya = -1; 
+			game.lifes--;
+			x = 0;
+			y = 0;
 			//game.gameOver();
 		}
 		if (collision()){

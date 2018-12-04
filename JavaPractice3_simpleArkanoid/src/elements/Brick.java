@@ -14,8 +14,10 @@ public class Brick {
 	protected int y = 0;
 	protected int lifes = 0;
 	protected String type = "none";
-	private static final int WIDTH = 20;
-	private static final int HEIGHT = 10;
+	protected static final int WIDTH = 20;
+	protected static final int HEIGHT = 10;
+	protected boolean hasHitRacquetOnFall = false; // we use this just in red bricks
+	
 	protected Game game;
 
 	public Brick(Game game, int x, int y) {
@@ -173,6 +175,13 @@ public class Brick {
 	public String getType() {
 		return type;
 	}
+
+
+	public boolean isHasHitRacquetOnFall() {
+		return hasHitRacquetOnFall;
+	}
+	
+	
 	
 	
 	
