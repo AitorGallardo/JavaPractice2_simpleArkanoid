@@ -29,11 +29,8 @@ public class Game extends JPanel {
 	public Racquet racquet = new Racquet(this);
 	public ArrayList<Brick> brickPack = new ArrayList<Brick>();
 	Color color;
-	
-	public int raquetSpeedModifier = 0;
 	public int lifes = 3;
-	
-	
+	public int raquetSpeedModifier = 0;
 	// Timer. We need to create it in the main class cause if we create it in brick class and we delete the brick we cant manage that specific tasker to reset or finish it
 	public Timer timer = new Timer();
 	
@@ -123,18 +120,24 @@ public class Game extends JPanel {
 		
 		//Check bricks states and do brick function
 		for(Brick eaBrick: brickPack) {
-			eaBrick.checkHit();
-			if(eaBrick.getLifes() <= 0) {
+			if(eaBrick.checkHit() <= 0) {
 				eaBrick.brickAction();
 				if(eaBrick.getType() != "red" || eaBrick.isHasHitRacquetOnFall() == true)
 					position = brickPack.indexOf(eaBrick);
 			}
 		}
-		if(position != -1)
-		brickPack.remove(position);
+		if(position != -1) {
+			brickPack.remove(position);
+			// brickPack.clear();
+		}
 		
-		if(lifes==0) {
+		
+		
+		if(lifes==0) { // lose game
 			this.gameOver();
+		}
+		if(brickPack.isEmpty()) { // win game
+			this.winGame();
 		}
 	}
 	
@@ -160,9 +163,13 @@ public class Game extends JPanel {
 		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
 		System.exit(ABORT);
 	}
+	public void winGame() {
+		JOptionPane.showMessageDialog(this, "WIN", "You Won the game!", JOptionPane.YES_NO_OPTION);
+		System.exit(ABORT);
+	}
 
 	public static void main(String[] args) throws InterruptedException {
-		JFrame frame = new JFrame("Mini Tennis");
+		JFrame frame = new JFrame("ARKANOID");
 		Game game = new Game();
 		frame.add(game);
 		frame.setSize(300, 400);

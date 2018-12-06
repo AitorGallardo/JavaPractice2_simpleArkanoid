@@ -16,7 +16,7 @@ public class Brick {
 	protected String type = "none";
 	protected static final int WIDTH = 20;
 	protected static final int HEIGHT = 10;
-	protected boolean hasHitRacquetOnFall = false; // we use this just in red bricks
+	protected boolean hasHitRacquetOREndOfScreenOnFall = false; // we use this just in red bricks
 
 	
 	protected Game game;
@@ -36,14 +36,13 @@ public class Brick {
 	}
 	
 
-	public boolean checkHit() {
+	public int checkHit() {
 		
 		if(collision() && lifes > 0) {
 			this.changeBallDirection();
 			this.lifes--;
-			return true;
 		}
-		return false;
+		return lifes;
 	}
 		
 	public void brickAction() {
@@ -56,30 +55,24 @@ public class Brick {
 
 	public void changeBallDirection() {
 		
-			 Rectangle ball = game.ball.getBounds();
-			 int ballT = getTopSide(ball.y, ball.height);
-			 int ballB = getBottomSide(ball.y, ball.height);
-			 int ballL = getLeftSide(ball.x, ball.width);
-			 int ballR = getRightSide(ball.x, ball.width);
-			 
-			 Rectangle thisBrick = this.getBounds();
-			 int brickT = getTopSide(thisBrick.y, thisBrick.height);
-			 int brickB = getBottomSide(thisBrick.y, thisBrick.height);
-			 int brickL = getLeftSide(thisBrick.x, thisBrick.width);
-			 int brickR = getRightSide(thisBrick.x, thisBrick.width);
-			 
+			Rectangle ball = game.ball.getBounds();
+				int	ballT = getTopSide(ball.y, ball.height),
+					ballB = getBottomSide(ball.y, ball.height),
+					ballL = getLeftSide(ball.x, ball.width),
+					ballR = getRightSide(ball.x, ball.width);
+
+			Rectangle thisBrick = this.getBounds();
+				int brickT = getTopSide(thisBrick.y, thisBrick.height),
+					brickB = getBottomSide(thisBrick.y, thisBrick.height),
+					brickL = getLeftSide(thisBrick.x, thisBrick.width),
+					brickR = getRightSide(thisBrick.x, thisBrick.width);
+ 
 			 // Messages to check hitting						
-			 String touchingTopBrickandBottomBall = "TOP_BRICK - BOTTOM_BALL: " + (brickT-ballB);
+/*			 String touchingTopBrickandBottomBall = "TOP_BRICK - BOTTOM_BALL: " + (brickT-ballB);
 			 String touchingBottomBrickandTopBall = "BOTTOM_BRICK - TOP_BALL: " + (ballT-brickB);
 			 String touchingLeftBallandRightBrick = "LEFT_BALL - RIGHT_BRICK: " + (ballL-brickR);
-			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (brickL-ballR);
-
-			 /*JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
-			 JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
-			 JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
-			 JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);*/
-			 
-			 
+			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (brickL-ballR);*/
+			 			 
 			 
 			// HARCODED INTERSECTION RANGE
 			 if(ballT-brickB == -1) {
@@ -121,20 +114,6 @@ public class Brick {
 		return x + WIDTH/2;
 	}
 	
-	/*	public int getTopSide() {
-			return y - HEIGHT;
-		}
-		public int getBottomSide() {
-			return y + HEIGHT;
-		}
-		public int getLeftSide() {
-			return x - WIDTH;
-		}
-		public int getRightSide() {
-			return x + WIDTH;
-		}*/
-
-
 	
 	// GETTERS&SETTERS
 	
@@ -179,7 +158,7 @@ public class Brick {
 
 
 	public boolean isHasHitRacquetOnFall() {
-		return hasHitRacquetOnFall;
+		return hasHitRacquetOREndOfScreenOnFall;
 	}
 	
 	

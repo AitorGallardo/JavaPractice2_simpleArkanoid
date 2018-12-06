@@ -20,7 +20,7 @@ public class redBrick extends Brick{
 	}
 	
 	@Override
-	public boolean checkHit() {
+	public int checkHit() {
 		return super.checkHit();
 	}
 
@@ -30,12 +30,14 @@ public class redBrick extends Brick{
 		
 		boolean brickIntersectingRacquet = game.racquet.getBounds().intersects(this.getBounds());
 		
-		if(brickIntersectingRacquet && super.hasHitRacquetOnFall==false) {
-			super.hasHitRacquetOnFall = true;
+		if(brickIntersectingRacquet && super.hasHitRacquetOREndOfScreenOnFall==false) {
+			super.hasHitRacquetOREndOfScreenOnFall = true;
 				game.lifes--;
 				game.ball.x = 0;
 				game.ball.y = 0;
 				System.out.println("VIDAS: " + game.lifes);
-		}		
+		} else if(this.getTopSide(y, HEIGHT) == game.getHeight()) { // if the brick past the screen it is removed 
+			super.hasHitRacquetOREndOfScreenOnFall = true;
+		}
 	}
 }

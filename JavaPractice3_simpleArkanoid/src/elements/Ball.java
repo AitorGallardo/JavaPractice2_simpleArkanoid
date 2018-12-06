@@ -29,23 +29,20 @@ public class Ball {
 			game.lifes--;
 			x = 0;
 			y = 0;
-			//game.gameOver();
 		}
 		if (collision()){
 			ya = -1;
-			y = game.racquet.getTopSide() - DIAMETER/2;
 		}
 		x = x + xa;
 		y = y + ya;
 	}
 
 	private boolean collision() {
-		//game.brickPack.lastIndexOf(o)
 		return game.racquet.getBounds().intersects(getBounds());
 	}
 
 	public void paint(Graphics2D g) {
-		// g.fillRect(x, y, DIAMETER, DIAMETER);  // We can use a rectangle to have a clearer view of intersactions
+		// g.fillRect(x, y, DIAMETER, DIAMETER);  // We can use a rectangle to have a clearer view of intersections
 		g.fillOval(x, y, DIAMETER, DIAMETER);
 	}
 	
