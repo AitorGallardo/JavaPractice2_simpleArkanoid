@@ -32,9 +32,7 @@ public class Racquet {
 	}
 
 	public void keyPressed(KeyEvent e, int modifier) {
-		
-		
-		
+
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			xa = -1 - modifier;
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)

@@ -3,9 +3,7 @@ package elements;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 
-import javax.swing.JOptionPane;
 
 import core.Game;
 
@@ -67,32 +65,18 @@ public class Brick {
 					brickL = getLeftSide(thisBrick.x, thisBrick.width),
 					brickR = getRightSide(thisBrick.x, thisBrick.width);
  
-			 // Messages to check hitting						
-/*			 String touchingTopBrickandBottomBall = "TOP_BRICK - BOTTOM_BALL: " + (brickT-ballB);
-			 String touchingBottomBrickandTopBall = "BOTTOM_BRICK - TOP_BALL: " + (ballT-brickB);
-			 String touchingLeftBallandRightBrick = "LEFT_BALL - RIGHT_BRICK: " + (ballL-brickR);
-			 String touchingRighttBallandLeftBrick = "RIGHT_BALL - LEFT_BRICK: " + (brickL-ballR);*/
-			 			 
-			 
-			// HARCODED INTERSECTION RANGE
 			 if(ballT-brickB == -1) {
-				 // JOptionPane.showMessageDialog(null, touchingBottomBrickandTopBall);
 				 game.ball.ya = 1;
 				
 			 } else if(brickT-ballB == -1) {
-				 // JOptionPane.showMessageDialog(null, touchingTopBrickandBottomBall);
 				 game.ball.ya = -1;
 			
 			 } else if(ballL-brickR == 4) { 
-				 // JOptionPane.showMessageDialog(null, touchingLeftBallandRightBrick);
 				 game.ball.xa = 1;
 			
 			 } else if(brickL-ballR == -6) {
-				  // JOptionPane.showMessageDialog(null, touchingRighttBallandLeftBrick);
-				 game.ball.xa = -1;
-				 
+				 game.ball.xa = -1;				 
 			 }
- 
 	}
 
 

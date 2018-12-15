@@ -22,7 +22,7 @@ import elements.blueBrick;
 import elements.greenBrick;
 import elements.redBrick;
 
-@SuppressWarnings("serial") // QUE ES ???
+@SuppressWarnings("serial") 
 public class Game extends JPanel {
 
 	public Ball ball = new Ball(this);
@@ -31,7 +31,7 @@ public class Game extends JPanel {
 	Color color;
 	public int lifes = 3;
 	public int raquetSpeedModifier = 0;
-	// Timer. We need to create it in the main class cause if we create it in brick class and we delete the brick we cant manage that specific tasker to reset or finish it
+	// Timer
 	public Timer timer = new Timer();
 	
 	public boolean timerActive = false; // Handles wheter we have an active count. If we already have one we reset countdown
@@ -64,6 +64,7 @@ public class Game extends JPanel {
 	public Game() {
 		
 		fillBrickList();
+		
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -116,9 +117,8 @@ public class Game extends JPanel {
 	private void checkGameState() {
 		
 		int position = -1 ;
-
 		
-		//Check bricks states and do brick function
+		//Check bricks states and do brick functions
 		for(Brick eaBrick: brickPack) {
 			if(eaBrick.checkHit() <= 0) {
 				eaBrick.brickAction();
@@ -128,11 +128,9 @@ public class Game extends JPanel {
 		}
 		if(position != -1) {
 			brickPack.remove(position);
-			// brickPack.clear();
 		}
 		
-		
-		
+				
 		if(lifes==0) { // lose game
 			this.gameOver();
 		}

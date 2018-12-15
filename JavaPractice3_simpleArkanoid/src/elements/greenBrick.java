@@ -2,7 +2,7 @@ package elements;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
+
 
 import core.Game;
 
@@ -25,7 +25,6 @@ public class greenBrick extends Brick {
 
 	@Override
 	public void brickAction() {
-		y = y+1;
 	}
 
 }

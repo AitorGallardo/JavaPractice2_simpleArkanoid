@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import core.Game;
 
 public class Ball {
-	private static final int DIAMETER = 10; // 30
+	private static final int DIAMETER = 10;
 	int x = 0;
 	int y = 0;
 	int xa = 1;
@@ -25,7 +25,6 @@ public class Ball {
 		if (y + ya < 0)
 			ya = 1;
 		if (y + ya > game.getHeight() - DIAMETER) {
-			// ya = -1; 
 			game.lifes--;
 			x = 0;
 			y = 0;
@@ -42,7 +41,6 @@ public class Ball {
 	}
 
 	public void paint(Graphics2D g) {
-		// g.fillRect(x, y, DIAMETER, DIAMETER);  // We can use a rectangle to have a clearer view of intersections
 		g.fillOval(x, y, DIAMETER, DIAMETER);
 	}
 	
